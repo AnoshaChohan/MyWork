@@ -3,6 +3,7 @@ document.querySelectorAll(".drum")[i].addEventListener("click",function(){
     // alert("I got clicked!");
   
     var buttoninnerHTML = this.innerHTML;
+    buttonAnimation(buttoninnerHTML);
     switch(buttoninnerHTML){
         case "w": 
         var audio=new Audio("sounds/crash.mp3");
@@ -56,6 +57,7 @@ document.querySelectorAll(".drum")[i].addEventListener("click",function(){
 
 document.addEventListener("keypress",function(event){
     var innerKey = event.key;
+    buttonAnimation(innerKey);
     switch(innerKey){
         case "w": 
         var audio=new Audio("sounds/crash.mp3");
@@ -105,3 +107,13 @@ document.addEventListener("keypress",function(event){
 
    
 })
+
+function buttonAnimation(currentKey) {
+    var activeButton = document.querySelector("." + currentKey);
+    if (activeButton) {
+        activeButton.classList.add("pressed");
+        setTimeout(function() {
+            activeButton.classList.remove("pressed");
+        }, 100); // Remove the class after 100 milliseconds
+    }
+}
